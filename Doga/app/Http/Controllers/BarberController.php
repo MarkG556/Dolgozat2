@@ -6,7 +6,8 @@ use App\Models\Barber;
 use App\Http\Requests\StoreBarberRequest;
 use App\Http\Requests\UpdateBarberRequest;
 use Illuminate\Validation\ValidationException;
-use Request;
+//use Request;
+use Illuminate\Http\Request;
 
 class BarberController extends Controller
 {
@@ -15,7 +16,7 @@ class BarberController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has("id")){
+        /*if($request->has('id')){
             try {
                 $barber = Barber::findOrFail($request->id);
             } catch (\Throwable $th) {
@@ -23,7 +24,7 @@ class BarberController extends Controller
             }
             
             return response()->json(["success" => true, "uzenet" => $barber->jsonSerialize()], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);
-        }
+        }*/
 
         $barbers = Barber::all();
         return response()->json(["success" => true, "uzenet" => $barbers->jsonSerialize()], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);
@@ -56,7 +57,7 @@ class BarberController extends Controller
         }
 
         $barber = Barber::create([
-            "name" => $request->name,
+            "barber_name" => $request->name,
         ]);
 
         return response()->json(["success" => true, "uzenet" => "Barber " . $barber->name . " rögzítve!"], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);

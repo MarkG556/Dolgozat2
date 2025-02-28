@@ -7,7 +7,7 @@ use App\Http\Requests\StoreAppointmentRequest;
 use App\Http\Requests\UpdateAppointmentRequest;
 use App\Models\Barber;
 use Illuminate\Validation\ValidationException;
-use Request;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller
 {
@@ -16,7 +16,7 @@ class AppointmentController extends Controller
      */
     public function index(Request $request)
     {
-        if($request->has("id")){
+        /*if($request->has("id")){
             try {
                 $appointment = Appointment::findOrFail($request->id);
             } catch (\Throwable $th) {
@@ -24,7 +24,7 @@ class AppointmentController extends Controller
             }
             
             return response()->json(["success" => true, "uzenet" => $appointment->jsonSerialize()], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);
-        }
+        }*/
 
         $appointment = Appointment::all();
         return response()->json(["success" => true, "uzenet" => $appointment->jsonSerialize()], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);
@@ -46,7 +46,7 @@ class AppointmentController extends Controller
             $request->validate([
                 "name" => "required|string|max:255",
                 "barber_id"=> "required|int",
-                "appointment" => "required|datetime"
+                "appointment" => "required|date"
             ],[
                 "name.max" =>"A(z) :attribute túl hosszú! Max hossz: 255!",
                 "required" =>"A(z) :attribute kitöltése kötelező!",
@@ -70,7 +70,7 @@ class AppointmentController extends Controller
             "appointment" =>$request->appointment
         ]);
 
-        return response()->json(["success" => true, "uzenet" => "Foglalás " . $appointment->nev . " névere rögzítve!"], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);
+        return response()->json(["success" => true, "uzenet" => "Foglalás " . $appointment->name . " névere rögzítve!"], 200, ["Access-Control-Allow-Origin" => "*"], JSON_UNESCAPED_UNICODE);
     }
 
     /**
