@@ -51,7 +51,8 @@ class AppointmentController extends Controller
                 "name.max" =>"A(z) :attribute túl hosszú! Max hossz: 255!",
                 "required" =>"A(z) :attribute kitöltése kötelező!",
                 "string" =>"A(z) :attribute szöveges értéket vár!",
-                "int" => "A(z) :attribute szám értéket vár!"
+                "int" => "A(z) :attribute szám értéket vár!",
+                "date"=>"A(z) :attribute dátum értéket vár! (érvénytelen formátum?)"
             ],[
                 "name" => "név",
             ]);
