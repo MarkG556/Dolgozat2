@@ -9,4 +9,9 @@ class Barber extends Model
 {
     /** @use HasFactory<\Database\Factories\BarberFactory> */
     use HasFactory;
+
+    protected $fillable = ["nev"];
+    public function appointments() {
+        return $this->hasMany(Appointment::class);
+    }
 }

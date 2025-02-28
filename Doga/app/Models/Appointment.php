@@ -9,4 +9,10 @@ class Appointment extends Model
 {
     /** @use HasFactory<\Database\Factories\AppointmentFactory> */
     use HasFactory;
+
+    protected $fillable = ["nev","barber_id", "appointment"];
+
+    function barber(){
+        return $this->belongsTo(Barber::class);
+    }
 }
